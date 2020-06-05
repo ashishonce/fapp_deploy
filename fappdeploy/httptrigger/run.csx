@@ -10,7 +10,7 @@ using System.Net.Http.Headers;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-
+[FunctionName("DispatchEvent")]
 public static async Task<IActionResult> Run(HttpRequest req, ILogger log)
 {
     log.LogInformation("C# HTTP trigger function processed a request.");
