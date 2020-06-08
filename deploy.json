@@ -52,6 +52,9 @@
             "name": "[variables('funcAppName')]",
             "type": "Microsoft.Web/sites",
             "kind": "functionapp",
+            "identity": {
+                        "type": "SystemAssigned"
+                    },
             "location": "[resourceGroup().location]",
             "tags": {
                 "Owner": "[parameters('OwnerName')]",
