@@ -38,11 +38,15 @@ public static class GridEventHandler{
         string requestBody = await req.Content.ReadAsAsync<String>();
         dynamic requestObject = JsonConvert.DeserializeObject(requestBody);
         var webhook_res = string.Empty;
-        if (requestObject != null){
-            if (requestObject[0].data != null &&  !string.IsNullOrEmpty(requestObject[0].data.validationCode)){
-                var validcode = requestObject[0].data.validationCode;
-                webhook_res= Newtonsoft.Json.JsonConvert.SerializeObject(new Newtonsoft.Json.Linq.JObject {["validationResponse"]= validcode});
-                return (ActionResult)new OkObjectResult($"{webhook_res}");
+        // log.LogInformation(requestObject);
+        
+        if (requestObject != null && requestObject[0]["data"] != null){
+            log.LogInformation("I am here.");
+            var validationCode = requestObject[0].data.validationCode;
+
+            if(validationCode != null){
+            webhook_res= Newtonsoft.Json.JsonConvert.SerializeObject(new Newtonsoft.Json.Linq.JObject {["validationResponse"]= validationCode});
+            return (ActionResult)new OkObjectResult($"{webhook_res}");
             }
         }
 
