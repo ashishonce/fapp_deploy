@@ -35,7 +35,7 @@ public static class GridEventHandler{
     {
         log.LogInformation("C# HTTP trigger function processed a request.");
 
-        string requestBody = await req.Content.ReadAsAsync<string>();
+        string requestBody = await req.Content.ReadAsStringAsync();
         dynamic requestObject = JsonConvert.DeserializeObject(requestBody);
         var webhook_res = string.Empty;
         // log.LogInformation(requestObject);
